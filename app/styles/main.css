@@ -87,6 +87,10 @@ body {
   margin-top: 35px;
 }
 
+.content-body {
+  position: fixed;
+}
+
 .tag-container {
   width: 100%;
   margin-top: 10px;
@@ -99,4 +103,23 @@ body {
   margin: 0 5px 5px 0;
   border-radius: 3px;
   font-size: 11px;
+}
+
+.active {
+  background-color: #efefef;
+}
+
+/* Helpers */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
 }

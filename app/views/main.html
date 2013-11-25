@@ -7,7 +7,7 @@
   
   <div class="content-list">
     <ul class="list-group col-md-6">
-      <li ng-repeat="post in posts" class="list-group-item">
+      <li ng-repeat="post in posts" class="list-group-item" ng-class="{active: selectedPost === post}">
         <a href="" ng-click="showDetails(post)">
           {{ post.title }}
         </a>
@@ -16,11 +16,13 @@
         </div> 
       </li>
     </ul>
-    <div class="col-md-6" ng-bind-html="postBody"></div>
+    <div class="col-md-6">
+      <div class="content-body" ng-bind-html="selectedPost.body"></div>
+    </div>
   </div>
+  
+  <div class="cf"></div>
 
-  
-  
   <ul class="pagination">
     <li><a href="">&laquo;</a></li>
     <li ng-repeat="n in pages" ng-class="{disabled: currPage == n}">

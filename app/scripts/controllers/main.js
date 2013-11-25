@@ -16,7 +16,7 @@ angular.module('photoshoplrNgApp.controllers', [])
 	    });
 
 	    $scope.showDetails = function(post) {
-	    	$scope.postBody = post.body;
+	    	$scope.selectedPost = post;
 	    }
 
 	    $scope.goToPage = function(pageN) {
