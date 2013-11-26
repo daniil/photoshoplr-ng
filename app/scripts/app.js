@@ -5,6 +5,7 @@ angular.module('photoshoplrNgApp', [
     'ngRoute',
     'ngSanitize',
     'photoshoplrNgApp.controllers',
-    'photoshoplrNgApp.services'
+    'photoshoplrNgApp.services',
+    'photoshoplrNgApp.directives'
   ]);
   

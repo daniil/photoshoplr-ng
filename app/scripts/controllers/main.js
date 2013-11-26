@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('photoshoplrNgApp.controllers', [])
-  .controller('MainCtrl', ['$scope', '$resource', 'TumblrAPI', 'Settings',
-    function ($scope, $resource, TumblrAPI, Settings) {
+  .controller('MainCtrl', ['$scope', '$resource', '$window', 'TumblrAPI', 'Settings',
+    function ($scope, $resource, $window, TumblrAPI, Settings) {
       $scope.currPage = 0;
       $scope.currTag = '';
 

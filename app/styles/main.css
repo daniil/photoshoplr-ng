@@ -79,8 +79,19 @@ body {
 }
 
 /* Custom styles */
+a:link,
+a:visited {
+  color: #3498DB;
+}
+
 .content {
   margin-top: 35px;
+}
+
+.content-body {
+  -webkit-transition: margin-top 0.5s ease-in-out;
+  -moz-transition: margin-top 0.5s ease-in-out;
+  transition: margin-top 0.5s ease-in-out;
 }
 
 .content-body img {
@@ -91,6 +102,10 @@ body {
   background-color: #ECF0F1;
 }
 
+.content-item.active .tag:not(.active) {
+  background-color: #fafeff;
+}
+
 .tag-container {
   width: 100%;
   margin-top: 10px;
@@ -99,14 +114,14 @@ body {
 .tag {
   display: inline-block;
   padding: 3px 7px;
-  background-color: #BDC3C7;
+  background-color: #ECF0F1;
   margin: 0 5px 5px 0;
   border-radius: 3px;
   font-size: 11px;
 }
 
 .tag.active {
-  background-color: #7F8C8D;
+  background-color: #95A5A6;
   color: #ECF0F1;
 }
 
