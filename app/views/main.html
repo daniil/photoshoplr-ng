@@ -2,28 +2,35 @@
   <h1 ng-show="title">{{ title }} Repository <br><small>{{ description }}</small></h1>
   
   <div class="search-box">
-    <input type="text" class="form-control input-lg" placeholder="Search for plugins">
+    <input type="text" class="form-control input-lg" placeholder="Search for plugins" ng-model="searchQuery">
   </div>
   
-  <div class="content-list">
-    <ul class="list-group col-md-6">
-      <li ng-repeat="post in posts" class="list-group-item" ng-class="{active: selectedPost === post}">
-        <a href="" ng-click="showDetails(post)">
-          {{ post.title }}
-        </a>
-        <div class="tag-container">
-          <span ng-repeat="tag in post.tags" class="tag">{{ tag }}</span>
-        </div> 
-      </li>
-    </ul>
-    <div class="col-md-6">
-      <div class="content-body" ng-bind-html="selectedPost.body"></div>
+  <div class="content">
+    <div class="col-md-6 content-list">
+      <ul class="list-group">
+        <li ng-repeat="post in posts" class="list-group-item" ng-class="{active: selectedPost === post}">
+          <a href="" ng-click="showDetails(post)">
+            {{ post.title }}
+          </a>
+          <div class="tag-container">
+            <span ng-repeat="tag in post.tags" class="tag">{{ tag }}</span>
+          </div> 
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6 content-body">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ selectedPost.title }}</h3>
+        </div>
+        <div class="panel-body" ng-bind-html="selectedPost.body"></div>
+      </div>
     </div>
   </div>
   
   <div class="cf"></div>
 
-  <ul class="pagination">
+  <ul class="pagination pagination-sm">
     <li><a href="">&laquo;</a></li>
     <li ng-repeat="n in pages" ng-class="{disabled: currPage == n}">
       <a href="" ng-click="goToPage(n)">

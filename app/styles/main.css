@@ -83,12 +83,12 @@ body {
   margin-top: 30px;
 }
 
-.content-list {
+.content {
   margin-top: 35px;
 }
 
-.content-body {
-  position: fixed;
+.content-body img {
+  width: 100%;
 }
 
 .tag-container {
@@ -99,14 +99,14 @@ body {
 .tag {
   display: inline-block;
   padding: 3px 7px;
-  background-color: #efefef;
+  background-color: #BDC3C7;
   margin: 0 5px 5px 0;
   border-radius: 3px;
   font-size: 11px;
 }
 
 .active {
-  background-color: #efefef;
+  background-color: #ECF0F1;
 }
 
 /* Helpers */
