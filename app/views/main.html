@@ -1,10 +1,6 @@
 <div class="container">
   <h1 ng-show="title">{{ title }} Repository <br><small>{{ description }}</small></h1>
   
-  <div class="search-box">
-    <input type="text" class="form-control input-lg" placeholder="Search for plugins" ng-model="searchQuery">
-  </div>
-  
   <div class="content">
     <div class="col-md-6 content-list">
       <ul class="list-group">
@@ -12,6 +8,8 @@
           <a href="" ng-click="showDetails(post)">
             {{ post.title }}
           </a>
+          <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
+
           <div class="tag-container">
             <span ng-repeat="tag in post.tags" class="tag">{{ tag }}</span>
           </div> 
@@ -31,12 +29,10 @@
   <div class="cf"></div>
 
   <ul class="pagination pagination-sm">
-    <li><a href="">&laquo;</a></li>
     <li ng-repeat="n in pages" ng-class="{disabled: currPage == n}">
       <a href="" ng-click="goToPage(n)">
         {{ n + 1 }}
       </a>
     </li>
-    <li><a href="">&raquo;</a></li>
   </ul>
 </div>
