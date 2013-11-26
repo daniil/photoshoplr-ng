@@ -6,6 +6,7 @@ angular.module('photoshoplrNgApp', [
     'ngSanitize',
     'photoshoplrNgApp.controllers',
     'photoshoplrNgApp.services',
-    'photoshoplrNgApp.directives'
+    'photoshoplrNgApp.directives',
+    'photoshoplrNgApp.filters'
   ]);
   

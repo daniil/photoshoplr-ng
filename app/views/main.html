@@ -9,11 +9,10 @@
             {{ post.title }}
           </a>
           <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
-
           <div class="tag-container">
-            <span ng-repeat="tag in post.tags" class="tag" ng-class="{active: currTag === tag}">
-              <a href="" ng-click="refineByTag(tag)">{{ tag }}</a>
-              <span class="glyphicon glyphicon-remove-circle" ng-show="currTag === tag" ng-click="refineByTag('')"></span>
+            <span ng-repeat="tag in post.tags" class="tag" ng-class="{active: tagActive(tag)}">
+              <a href="" ng-click="toggleTag(tag)">{{ tag }}</a>
+              <span class="glyphicon glyphicon-remove-circle" ng-show="tagActive(tag)" ng-click="toggleTag(tag)"></span>
             </span>
           </div> 
         </li>
@@ -28,14 +27,4 @@
       </div>
     </div>
   </div>
-  
-  <div class="cf"></div>
-
-  <ul class="pagination pagination-sm">
-    <li ng-repeat="n in pages" ng-class="{disabled: currPage === n}">
-      <a href="" ng-click="goToPage(n)">
-        {{ n + 1 }}
-      </a>
-    </li>
-  </ul>
 </div>

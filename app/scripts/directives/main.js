@@ -21,7 +21,7 @@ angular.module('photoshoplrNgApp.directives', [])
               listHeight = angular.element('.content-list').height(),
               contentHeight = element.height();
           
-          if (windowEl.scrollTop() < contentOffset || windowEl.scrollTop() < (contentHeight * 0.5)) {
+          if (windowEl.scrollTop() < contentOffset || windowEl.scrollTop() < (contentHeight)) {
             scrollPos = 0;
           } else if (windowEl.scrollTop() > listHeight - contentHeight) {
             scrollPos = listHeight - contentHeight;

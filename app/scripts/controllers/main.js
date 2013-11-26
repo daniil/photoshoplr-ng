@@ -3,51 +3,49 @@
 angular.module('photoshoplrNgApp.controllers', [])
   .controller('MainCtrl', ['$scope', '$resource', '$window', 'TumblrAPI', 'Settings',
     function ($scope, $resource, $window, TumblrAPI, Settings) {
-      $scope.currPage = 0;
-      $scope.currTag = '';
+    	$scope.posts = [];
+    	$scope.selectedPost;
+    	$scope.tags = [];
 
-      TumblrAPI.blogPosts({offset: 0, tag: $scope.currTag}, function(blogPosts) {
-        $scope.title = blogPosts.blog.title;
-        $scope.description = blogPosts.blog.description;
+      TumblrAPI.blogInfo({offset: 0}, function(blogInfo) {
+      	var pageCount = Math.ceil(blogInfo.blog.posts / Settings.postLimit);
 
-        refreshPosts(blogPosts);
+      	$scope.title = blogInfo.blog.title;
+        $scope.description = blogInfo.blog.description;
+
+      	populatePosts(pageCount);
       });
 
       $scope.showDetails = function(post) {
         $scope.selectedPost = post;
       };
 
-      $scope.goToPage = function(pageN) {
-        TumblrAPI.blogPosts({offset: pageN * Settings.postLimit, tag: $scope.currTag}, function(blogPosts) {
-          refreshPosts(blogPosts);
-
-          $scope.currPage = pageN;
-        });
+      $scope.toggleTag = function(tag) {
+      	_.contains($scope.tags, tag) ? $scope.tags.splice($scope.tags.indexOf(tag), 1) : $scope.tags.push(tag);
       };
 
-      $scope.refineByTag = function(tag) {
-        TumblrAPI.blogPosts({offset: 0, tag: tag}, function(blogPosts) {
-          refreshPosts(blogPosts);
-
-          $scope.currTag = tag;
-        });
-      };
-
-      function updatePaginator(postCount) {
-        var pageCount = Math.ceil(postCount / Settings.postLimit);
-        
-        $scope.pages = [];
-
-        for (var i = 0; i < pageCount; i++) {
-          $scope.pages.push(i);
-        }
+      $scope.tagActive = function(tag) {
+      	return _.contains($scope.tags, tag);
       }
 
-      function refreshPosts(blogPosts) {
-        $scope.posts = blogPosts.posts;
-        $scope.showDetails($scope.posts[0]);
-        window.scrollTo(0, 0);
-        updatePaginator(blogPosts.total_posts);
+      function populatePosts(pageCount) {
+      	var currPage = 0,
+      			getContent = function() {
+      				TumblrAPI.blogPosts({ offset: currPage * Settings.postLimit }, function(blogPosts) {
+      					$scope.posts = $scope.posts.concat(blogPosts.posts);
+      					
+      					if (currPage == 0) {
+      						$scope.showDetails($scope.posts[0]);
+      					}
+
+      					if (currPage < pageCount) {
+      						getContent();
+      						currPage++;
+      					}
+      				});
+      			};
+
+      	getContent();
       }
     }
   ]);
