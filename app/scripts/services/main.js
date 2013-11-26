@@ -16,7 +16,8 @@ angular.module('photoshoplrNgApp.services', [])
         api_key: '5qpBPu3mITiBI7oB9GwK5bBCYlMmt2Y43FD5RuXzJu3OWWPIBr',
         callback: 'JSON_CALLBACK',
         limit: Settings.postLimit,
-        offset: '@id'
+        offset: '@id',
+        tag: '@id'
       },
       {
         blogPosts: {

@@ -4,14 +4,17 @@
   <div class="content">
     <div class="col-md-6 content-list">
       <ul class="list-group">
-        <li ng-repeat="post in posts" class="list-group-item" ng-class="{active: selectedPost === post}">
+        <li ng-repeat="post in posts" class="list-group-item content-item" ng-class="{active: selectedPost === post}">
           <a href="" ng-click="showDetails(post)">
             {{ post.title }}
           </a>
           <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
 
           <div class="tag-container">
-            <span ng-repeat="tag in post.tags" class="tag">{{ tag }}</span>
+            <span ng-repeat="tag in post.tags" class="tag" ng-class="{active: currTag === tag}">
+              <a href="" ng-click="refineByTag(tag)">{{ tag }}</a>
+              <span class="glyphicon glyphicon-remove-circle" ng-show="currTag === tag" ng-click="refineByTag('')"></span>
+            </span>
           </div> 
         </li>
       </ul>
@@ -29,7 +32,7 @@
   <div class="cf"></div>
 
   <ul class="pagination pagination-sm">
-    <li ng-repeat="n in pages" ng-class="{disabled: currPage == n}">
+    <li ng-repeat="n in pages" ng-class="{disabled: currPage === n}">
       <a href="" ng-click="goToPage(n)">
         {{ n + 1 }}
       </a>

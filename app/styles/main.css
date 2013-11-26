@@ -87,6 +87,10 @@ body {
   width: 100%;
 }
 
+.content-item.active {
+  background-color: #ECF0F1;
+}
+
 .tag-container {
   width: 100%;
   margin-top: 10px;
@@ -101,8 +105,14 @@ body {
   font-size: 11px;
 }
 
-.active {
-  background-color: #ECF0F1;
+.tag.active {
+  background-color: #7F8C8D;
+  color: #ECF0F1;
+}
+
+.tag.active > a:link,
+.tag.active > a:visited {
+  color: #ECF0F1;
 }
 
 /* Helpers */
