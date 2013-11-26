@@ -11,12 +11,12 @@ angular.module('photoshoplrNgApp.services', [])
   .factory('TumblrAPI', ['$resource', 'Settings',
     function($resource, Settings) {
       var apiURL = 'http://api.tumblr.com/v2/blog/madebyvadim.tumblr.com/',
-      		blogConfig = {
-	          method: 'JSONP',
-	          transformResponse: function(data) {
-	            return data.response;
-	          }
-	        };
+          blogConfig = {
+            method: 'JSONP',
+            transformResponse: function(data) {
+              return data.response;
+            }
+          };
 
       return $resource(apiURL, {
         api_key: '5qpBPu3mITiBI7oB9GwK5bBCYlMmt2Y43FD5RuXzJu3OWWPIBr',
@@ -25,7 +25,7 @@ angular.module('photoshoplrNgApp.services', [])
         offset: '@id'
       },
       {
-      	blogInfo: _.extend(_.clone(blogConfig), {url: apiURL + "info"}),
+        blogInfo: _.extend(_.clone(blogConfig), {url: apiURL + "info"}),
         blogPosts: _.extend(_.clone(blogConfig), {url: apiURL + "posts"})
       });
     }
