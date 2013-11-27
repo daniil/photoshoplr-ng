@@ -38,9 +38,10 @@ angular.module('photoshoplrNgApp.controllers', [])
                   $scope.showDetails($scope.posts[0]);
                 }
 
+                currPage++;
+
                 if (currPage < pageCount) {
                   getContent();
-                  currPage++;
                 }
               });
             };
