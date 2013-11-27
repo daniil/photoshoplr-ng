@@ -28,6 +28,11 @@ angular.module('photoshoplrNgApp.controllers', [])
         return _.contains($scope.tags, tag);
       }
 
+      $scope.filterWatchable = function(filteredPosts) {
+        window.scrollTo(0, 0);
+        $scope.showDetails(filteredPosts[0]);
+      };
+
       function populatePosts(pageCount) {
         var currPage = 0,
             getContent = function() {
