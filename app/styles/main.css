@@ -84,6 +84,10 @@ a:visited {
   color: #3498DB;
 }
 
+.search-container {
+  margin-top: 30px;
+}
+
 .content {
   margin-top: 35px;
 }
