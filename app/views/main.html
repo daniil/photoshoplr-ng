@@ -10,7 +10,7 @@
   <div class="content">
     <div class="col-md-6 content-list">
       <ul class="list-group">
-        <li ng-repeat="post in posts | hasTags : {filter: tags, callback: filterWatchable}" class="list-group-item content-item" ng-class="{active: selectedPost === post}">
+        <li ng-repeat="post in posts | hasTags : tags" class="list-group-item content-item" ng-class="{active: selectedPost === post}">
           <a href="" ng-click="showDetails(post)">
             {{ post.title }}
           </a>
