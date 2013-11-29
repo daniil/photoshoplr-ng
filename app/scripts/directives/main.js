@@ -6,7 +6,7 @@ angular.module('photoshoplrNgApp.directives', [])
       restrict: 'A',
       link: function(scope, element) {
         var windowEl = angular.element($window),
-            contentOffset = 150;
+            contentOffset = angular.element('.content')[0].offsetTop - 25;
 
         windowEl.on('scroll', function() {
           positionContent();

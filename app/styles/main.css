@@ -98,9 +98,9 @@ a:visited {
 }
 
 .content-body {
-  -webkit-transition: margin-top 0.5s ease-in-out;
-  -moz-transition: margin-top 0.5s ease-in-out;
-  transition: margin-top 0.5s ease-in-out;
+  -webkit-transition: margin-top 0.5s ease-out;
+  -moz-transition: margin-top 0.5s ease-out;
+  transition: margin-top 0.5s ease-out;
 }
 
 .content-body img {
