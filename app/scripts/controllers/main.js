@@ -4,7 +4,6 @@ angular.module('photoshoplrNgApp.controllers', [])
   .controller('MainCtrl', ['$scope', '$resource', '$window', 'TumblrAPI', 'Settings',
     function ($scope, $resource, $window, TumblrAPI, Settings) {
       $scope.posts = [];
-      $scope.selectedPost;
       $scope.tags = [];
 
       TumblrAPI.blogInfo({offset: 0}, function(blogInfo) {
@@ -18,21 +17,29 @@ angular.module('photoshoplrNgApp.controllers', [])
 
       $scope.showDetails = function(post) {
         $scope.selectedPost = post;
+        console.log(post);
       };
 
       $scope.toggleTag = function(tag) {
         _.contains($scope.tags, tag) ? $scope.tags.splice($scope.tags.indexOf(tag), 1) : $scope.tags.push(tag);
         
-        var filterDone = $scope.$on('filterDone', function(event, firstFilteredPost) { 
+        var filtersDone = $scope.$on('postsFilterDone', function(event, firstFilteredPost) { 
           window.scrollTo(0, 0);
           $scope.showDetails(firstFilteredPost);
-          filterDone();
+          filtersDone();
         });
       };
 
       $scope.tagActive = function(tag) {
         return _.contains($scope.tags, tag);
-      }
+      };
+
+      $scope.$watch('searchQuery', function() {
+        var filtersDone = $scope.$on('postsFilterDone', function(event, firstFilteredPost) { 
+          $scope.showDetails(firstFilteredPost);
+          filtersDone();
+        });
+      });
       
       function populatePosts(pageCount) {
         var currPage = 0,

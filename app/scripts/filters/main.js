@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('photoshoplrNgApp.filters', [])
-  .filter('hasTags', function() {
-    var hasTagsFilter = function(posts, tags, scope) {
-      var filteredPosts = _.filter(posts, function(post) { 
+  .filter('postsFilter', ['$filter', function($filter) {
+    var postsFilter = function(posts, tags, searchQuery, scope) {
+      var filteredPosts;
+
+      filteredPosts = _.filter(posts, function(post) { 
         var matchCount = 0;
 
         _.each(post.tags, function(val) {
@@ -15,10 +17,12 @@ angular.module('photoshoplrNgApp.filters', [])
         return tags.length == 0 || matchCount == tags.length;
       });
 
-      scope.$emit('filterDone', filteredPosts[0]);
+      filteredPosts = $filter('filter')(filteredPosts, searchQuery);
+
+      scope.$emit('postsFilterDone', filteredPosts[0]);
 
       return filteredPosts;
     };
 
-    return hasTagsFilter;
-  });
+    return postsFilter;
+  }]);
