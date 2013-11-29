@@ -6,7 +6,8 @@ angular.module('photoshoplrNgApp.directives', [])
       restrict: 'A',
       link: function(scope, element) {
         var windowEl = angular.element($window),
-            contentOffset = angular.element('.content')[0].offsetTop - 25;
+            contentOffset = angular.element('.content')[0].offsetTop - 25,
+            lastY = windowEl.scrollTop();
 
         windowEl.on('scroll', function() {
           positionContent();
@@ -26,7 +27,11 @@ angular.module('photoshoplrNgApp.directives', [])
           } else if (windowEl.scrollTop() > listHeight - contentHeight) {
             scrollPos = listHeight - contentHeight;
           } else {
-            scrollPos = windowEl.scrollTop() - contentOffset;
+            if (contentHeight > windowEl.height()) {
+
+            } else {
+              scrollPos = windowEl.scrollTop() - contentOffset;
+            }
           }
           
           element.css({ 'margin-top' : scrollPos });

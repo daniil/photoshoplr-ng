@@ -29,6 +29,11 @@ body {
   padding-bottom: 19px;
 }
 
+.col-md-6 {
+  float: left;
+  width: 50%;
+}
+
 /* Custom page footer */
 .footer {
   padding-top: 19px;
