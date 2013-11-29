@@ -19,6 +19,8 @@ angular.module('photoshoplrNgApp.filters', [])
 
       filteredPosts = $filter('filter')(filteredPosts, searchQuery);
 
+      filteredPosts = $filter('orderBy')(filteredPosts, scope.orderByProp, true);
+
       scope.$emit('postsFilterDone', filteredPosts[0]);
 
       return filteredPosts;

@@ -5,6 +5,7 @@ angular.module('photoshoplrNgApp.controllers', [])
     function ($scope, $resource, $window, TumblrAPI, Settings) {
       $scope.posts = [];
       $scope.tags = [];
+      $scope.orderByProp = 'timestamp';
 
       TumblrAPI.blogInfo({offset: 0}, function(blogInfo) {
         var pageCount = Math.ceil(blogInfo.blog.posts / Settings.postLimit);
@@ -17,7 +18,6 @@ angular.module('photoshoplrNgApp.controllers', [])
 
       $scope.showDetails = function(post) {
         $scope.selectedPost = post;
-        console.log(post);
       };
 
       $scope.toggleTag = function(tag) {

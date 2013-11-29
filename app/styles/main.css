@@ -98,6 +98,17 @@ a:visited {
   margin-top: 30px;
 }
 
+.search-container > .input-group > .search-field {
+  border-right: none;
+}
+
+.search-container > .input-group > .clear-search {
+  border-left: none;
+  background-color: #fff;
+  cursor: pointer;
+  color: #cccccc;
+}
+
 .content {
   margin-top: 35px;
 }

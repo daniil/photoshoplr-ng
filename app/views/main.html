@@ -6,7 +6,10 @@
   </h1>
   <div class="search-container">
     <div class="input-group input-group-lg">
-      <input class="form-control input-lg" type="text" placeholder="Search repository" ng-model="searchQuery">
+      <input class="form-control input-lg search-field" type="text" placeholder="Search repository" ng-model="searchQuery">
+      <span class="input-group-addon clear-search" ng-click="searchQuery = ''">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+      </span>
       <span class="input-group-addon">
         <small>
           <strong>{{ filteredPosts.length }}</strong> items
