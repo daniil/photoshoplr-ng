@@ -22,6 +22,12 @@ angular.module('photoshoplrNgApp.controllers', [])
 
       $scope.toggleTag = function(tag) {
         _.contains($scope.tags, tag) ? $scope.tags.splice($scope.tags.indexOf(tag), 1) : $scope.tags.push(tag);
+        
+        var filterDone = $scope.$on('filterDone', function(event, firstFilteredPost) { 
+          window.scrollTo(0, 0);
+          $scope.showDetails(firstFilteredPost);
+          filterDone();
+        });
       };
 
       $scope.tagActive = function(tag) {
