@@ -7,10 +7,11 @@ angular.module('photoshoplrNgApp.directives', [])
       link: function(scope, element) {
         var windowEl = angular.element($window),
             contentOffset = angular.element('.content')[0].offsetTop - 25,
-            lastY = windowEl.scrollTop();
+            lastY;
 
         windowEl.on('scroll', function() {
           positionContent();
+          lastY = windowEl.scrollTop();
         });
 
         scope.$watch('selectedPost', function() {
@@ -28,7 +29,11 @@ angular.module('photoshoplrNgApp.directives', [])
             scrollPos = listHeight - contentHeight;
           } else {
             if (contentHeight > windowEl.height()) {
-
+              if (windowEl.scrollTop() - lastY > 0) {
+                scrollPos = windowEl.scrollTop() - contentOffset - (contentHeight - windowEl.height()) - 25;
+              } else {
+                scrollPos = windowEl.scrollTop() - contentOffset;
+              }
             } else {
               scrollPos = windowEl.scrollTop() - contentOffset;
             }
