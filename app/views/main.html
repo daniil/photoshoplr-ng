@@ -37,7 +37,10 @@
           <a href="" ng-click="showDetails(post)" class="post-title">
             {{ post.title }}
           </a>
-          <span class="badge pull-right">{{ post.note_count }} <span class="glyphicon glyphicon-heart"></span></span>
+          <span class="badge pull-right">
+            {{ post.note_count }} 
+            <span class="glyphicon glyphicon-heart text-subtle small"></span>
+          </span>
           <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
           <div class="well well-sm">
             <span class="text-muted small">Price</span>
@@ -55,7 +58,11 @@
     <div class="col-md-6 content-body" scroll-follower ng-show="selectedPost">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title post-title">{{ selectedPost.title }}</h3>
+          <h3 class="panel-title post-title">
+            <a ng-href="{{ selectedPost.post_url }}" target="_blank">
+              {{ selectedPost.title }}
+            </a>
+          </h3>
           <span class="glyphicon glyphicon-chevron-up pull-right text-muted clickable" ng-click="jumpToTop()"></span>
         </div>
         <div class="panel-body" ng-bind-html="selectedPost.body"></div>

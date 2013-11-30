@@ -193,3 +193,7 @@ a:visited {
 .clickable {
   cursor: pointer;
 }
+
+.text-subtle {
+  color: #e5e5e5;
+}
