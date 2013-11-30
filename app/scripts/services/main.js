@@ -5,7 +5,8 @@ angular.module('photoshoplrNgApp.services', [])
     function() {
       return {
         postLimit: 20,
-        defaultTitle: 'Photoshop Plugin'
+        defaultTitle: 'Photoshop Plugin',
+        priceRegExp: /\{([\$a-zA-Z\d\.\+\s\/\-]+)\}$/
       };
     }
   ])
