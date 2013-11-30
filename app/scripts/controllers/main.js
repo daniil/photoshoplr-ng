@@ -6,6 +6,7 @@ angular.module('photoshoplrNgApp.controllers', [])
       $scope.posts = [];
       $scope.tags = [];
       $scope.orderByProp = 'timestamp';
+      $scope.defaultTitle = Settings.defaultTitle
 
       TumblrAPI.blogInfo({offset: 0}, function(blogInfo) {
         var pageCount = Math.ceil(blogInfo.blog.posts / Settings.postLimit);
@@ -23,11 +24,7 @@ angular.module('photoshoplrNgApp.controllers', [])
       $scope.toggleTag = function(tag) {
         _.contains($scope.tags, tag) ? $scope.tags.splice($scope.tags.indexOf(tag), 1) : $scope.tags.push(tag);
         
-        var filtersDone = $scope.$on('postsFilterDone', function(event, firstFilteredPost) { 
-          window.scrollTo(0, 0);
-          $scope.showDetails(firstFilteredPost);
-          filtersDone();
-        });
+        updateAfterFilters();
       };
 
       $scope.tagActive = function(tag) {
@@ -35,10 +32,11 @@ angular.module('photoshoplrNgApp.controllers', [])
       };
 
       $scope.$watch('searchQuery', function() {
-        var filtersDone = $scope.$on('postsFilterDone', function(event, firstFilteredPost) { 
-          $scope.showDetails(firstFilteredPost);
-          filtersDone();
-        });
+        updateAfterFilters();
+      });
+
+      $scope.$watch('orderByProp', function() {
+        updateAfterFilters();
       });
       
       function populatePosts(pageCount) {
@@ -61,5 +59,14 @@ angular.module('photoshoplrNgApp.controllers', [])
 
         getContent();
       }
+
+      function updateAfterFilters() {
+        var filtersDone = $scope.$on('postsFilterDone', function(event, firstFilteredPost) { 
+          window.scrollTo(0, 0);
+          $scope.showDetails(firstFilteredPost);
+          filtersDone();
+        });
+      }
+
     }
   ]);

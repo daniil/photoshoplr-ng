@@ -4,7 +4,8 @@ angular.module('photoshoplrNgApp.services', [])
   .factory('Settings', [
     function() {
       return {
-        postLimit: 20
+        postLimit: 20,
+        defaultTitle: 'Photoshop Plugin'
       };
     }
   ])
@@ -25,8 +26,8 @@ angular.module('photoshoplrNgApp.services', [])
         offset: '@id'
       },
       {
-        blogInfo: _.extend(_.clone(blogConfig), {url: apiURL + "info"}),
-        blogPosts: _.extend(_.clone(blogConfig), {url: apiURL + "posts"})
+        blogInfo: _.extend(_.clone(blogConfig), {url: apiURL + 'info'}),
+        blogPosts: _.extend(_.clone(blogConfig), {url: apiURL + 'posts'})
       });
     }
   ]);

@@ -17,12 +17,25 @@
       </span>
     </div>
   </div>
+  <nav class="navbar navbar-default order-container">
+    <p class="navbar-text">
+      <strong>Order By</strong>
+    </p>
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-class="{disabled: orderByProp === 'timestamp'}">
+        <a href="" ng-click="orderByProp = 'timestamp'">Date</a>
+      </li>
+      <li ng-class="{disabled: orderByProp === 'note_count'}">
+        <a href="" ng-click="orderByProp = 'note_count'">Popularity</a>
+      </li>
+    </ul>
+  </nav>
   <div class="content">
     <div class="col-md-6 content-list">
       <ul class="list-group">
         <li ng-repeat="post in filteredPosts = (posts | postsFilter : tags : searchQuery : this)" class="list-group-item content-item" ng-class="{active: selectedPost === post}">
           <a href="" ng-click="showDetails(post)">
-            {{ post.title }}
+            {{ post.title || defaultTitle }}
           </a>
           <span class="badge pull-right">{{ post.note_count }} <span class="glyphicon glyphicon-heart"></span></span>
           <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
@@ -38,7 +51,7 @@
     <div class="col-md-6 content-body" scroll-follower ng-show="selectedPost">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">{{ selectedPost.title }}</h3>
+          <h3 class="panel-title">{{ selectedPost.title || defaultTitle }}</h3>
         </div>
         <div class="panel-body" ng-bind-html="selectedPost.body"></div>
       </div>

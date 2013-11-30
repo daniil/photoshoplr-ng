@@ -109,8 +109,12 @@ a:visited {
   color: #cccccc;
 }
 
+.order-container {
+  margin-top: 10px;
+}
+
 .content {
-  margin-top: 35px;
+  margin-top: 15px;
 }
 
 .content-body {
