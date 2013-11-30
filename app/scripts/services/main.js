@@ -6,7 +6,7 @@ angular.module('photoshoplrNgApp.services', [])
       return {
         postLimit: 20,
         defaultTitle: 'Photoshop Plugin',
-        priceRegExp: /\{([\$a-zA-Z\d\.\+\s\/\-]+)\}$/
+        priceRegExp: /[[\{|\(|\[]{1}([\$a-zA-Z\d\.\+\s\/\-]+)[\}|\)|\]]{1}$/
       };
     }
   ])
@@ -30,5 +30,29 @@ angular.module('photoshoplrNgApp.services', [])
         blogInfo: _.extend(_.clone(blogConfig), {url: apiURL + 'info'}),
         blogPosts: _.extend(_.clone(blogConfig), {url: apiURL + 'posts'})
       });
+    }
+  ])
+  .factory('PriceParser', ['Settings',
+    function(Settings) {
+      return {
+        parse: function(post) {
+          var match;
+
+          if (!post.title) {
+            _.extend(post, { title: Settings.defaultTitle })
+          }
+
+          match = $.trim(post.title).match(Settings.priceRegExp);
+
+          if (match) {
+            _.extend(post, {
+              price: match[1],
+              title: post.title.replace(match[0], '')
+            });
+          } else {
+            _.extend(post, { price: 'n/a' });
+          }
+        }
+      }
     }
   ]);
