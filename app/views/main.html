@@ -34,15 +34,15 @@
     <div class="col-md-6 content-list">
       <ul class="list-group">
         <li ng-repeat="post in filteredPosts = (posts | postsFilter : tags : searchQuery : this)" class="list-group-item content-item" ng-class="{active: selectedPost === post}">
-          <a href="" ng-click="showDetails(post)">
-            {{ post.title || defaultTitle }}
+          <a href="" ng-click="showDetails(post)" class="post-title">
+            {{ post.title }}
           </a>
           <span class="badge pull-right">{{ post.note_count }} <span class="glyphicon glyphicon-heart"></span></span>
           <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
           <div class="tag-container">
             <span ng-repeat="tag in post.tags" class="tag" ng-class="{active: tagActive(tag)}">
               <a href="" ng-click="toggleTag(tag)">{{ tag }}</a>
-              <span class="glyphicon glyphicon-remove-circle" ng-show="tagActive(tag)" ng-click="toggleTag(tag)"></span>
+              <span class="glyphicon glyphicon-remove-circle clickable" ng-show="tagActive(tag)" ng-click="toggleTag(tag)"></span>
             </span>
           </div> 
         </li>
@@ -51,7 +51,8 @@
     <div class="col-md-6 content-body" scroll-follower ng-show="selectedPost">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">{{ selectedPost.title || defaultTitle }}</h3>
+          <h3 class="panel-title post-title">{{ selectedPost.title }}</h3>
+          <span class="glyphicon glyphicon-chevron-up pull-right text-muted clickable" ng-click="jumpToTop()"></span>
         </div>
         <div class="panel-body" ng-bind-html="selectedPost.body"></div>
       </div>

@@ -123,8 +123,19 @@ a:visited {
   transition: margin-top 0.5s ease-out;
 }
 
+.content-body.no-animation {
+  -webkit-transition-duration: 0;
+  -moz-transition-duration: 0;
+  transition-duration: 0;
+}
+
 .content-body img {
   width: 100%;
+}
+
+.content-body .post-title {
+  max-width: 260px;
+  display: inline-block;
 }
 
 .content-item.active {
@@ -133,6 +144,11 @@ a:visited {
 
 .content-item.active .tag:not(.active) {
   background-color: #fafeff;
+}
+
+.content-item > .post-title {
+  max-width: 230px;
+  display: inline-block;
 }
 
 .tag-container {
@@ -172,4 +188,8 @@ a:visited {
 
 .cf {
     *zoom: 1;
+}
+
+.clickable {
+  cursor: pointer;
 }

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('photoshoplrNgApp.controllers', [])
-  .controller('MainCtrl', ['$scope', '$resource', '$window', 'TumblrAPI', 'Settings', 'PriceParser',
-    function ($scope, $resource, $window, TumblrAPI, Settings, PriceParser) {
+  .controller('MainCtrl', ['$scope', '$resource', '$window', '$timeout', 'TumblrAPI', 'Settings', 'PriceParser',
+    function ($scope, $resource, $window, $timeout, TumblrAPI, Settings, PriceParser) {
       $scope.posts = [];
       $scope.tags = [];
       $scope.orderByProp = 'timestamp';
@@ -30,6 +30,15 @@ angular.module('photoshoplrNgApp.controllers', [])
       $scope.tagActive = function(tag) {
         return _.contains($scope.tags, tag);
       };
+
+      $scope.jumpToTop = function() {
+        angular.element('.content-body').addClass('no-animation');
+        $window.scrollTo(0, 0);
+        var scrollTimeout = $timeout(function() {
+          angular.element('.content-body').removeClass('no-animation');
+          $timeout.cancel(scrollTimeout);
+        }, 100);
+      }
 
       $scope.$watch('searchQuery', function() {
         updateAfterFilters();
@@ -70,7 +79,7 @@ angular.module('photoshoplrNgApp.controllers', [])
 
       function updateAfterFilters() {
         var filtersDone = $scope.$on('postsFilterDone', function(event, firstFilteredPost) { 
-          window.scrollTo(0, 0);
+          $window.scrollTo(0, 0);
           $scope.showDetails(firstFilteredPost);
           filtersDone();
         });
