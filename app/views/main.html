@@ -39,6 +39,10 @@
           </a>
           <span class="badge pull-right">{{ post.note_count }} <span class="glyphicon glyphicon-heart"></span></span>
           <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
+          <div class="well well-sm">
+            <span class="text-muted small">Price</span>
+            <span class="pull-right text-success"><strong>{{ post.price }}</strong>
+          </div>
           <div class="tag-container">
             <span ng-repeat="tag in post.tags" class="tag" ng-class="{active: tagActive(tag)}">
               <a href="" ng-click="toggleTag(tag)">{{ tag }}</a>
