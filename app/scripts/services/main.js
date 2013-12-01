@@ -53,6 +53,22 @@ angular.module('photoshoplrNgApp.services', [])
           } else {
             _.extend(post, { price: 'n/a' });
           }
+
+          _.extend(post, { price_num: getNumVal(post.price) });
+
+          function getNumVal(val) {
+            var numVal;
+
+            var numMatch = val.match(/[\d\.]+/);
+            if (numMatch) numVal = numMatch[0];
+
+            var freeMatch = val.match(/\bF|free\b/);
+            if (freeMatch) numVal = 0;
+
+            if (!numVal && numVal !== 0) numVal = -1;
+
+            return numVal;
+          }
         }
       };
     }
