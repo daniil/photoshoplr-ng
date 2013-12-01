@@ -1,3 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+
 /* Space out content a bit */
 body {
   padding-top: 20px;
@@ -86,6 +91,19 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+/* Sticky Footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -50px;
+  padding: 0 0 50px;
+}
+
+#footer {
+  height: 50px;
+  background-color: #f5f5f5;
 }
 
 /* Custom styles */

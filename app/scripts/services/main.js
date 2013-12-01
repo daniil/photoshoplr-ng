@@ -6,6 +6,7 @@ angular.module('photoshoplrNgApp.services', [])
       return {
         postLimit: 20,
         defaultTitle: 'Photoshop Plugin',
+        currentYear: new Date().getFullYear(),
         priceRegExp: /[[\{|\(|\[]{1}([\$a-zA-Z\d\.\+\s\/\-]+)[\}|\)|\]]{1}$/
       };
     }
@@ -39,7 +40,7 @@ angular.module('photoshoplrNgApp.services', [])
           var match;
 
           if (!post.title) {
-            _.extend(post, { title: Settings.defaultTitle })
+            _.extend(post, { title: Settings.defaultTitle });
           }
 
           match = $.trim(post.title).match(Settings.priceRegExp);
@@ -53,6 +54,6 @@ angular.module('photoshoplrNgApp.services', [])
             _.extend(post, { price: 'n/a' });
           }
         }
-      }
+      };
     }
   ]);

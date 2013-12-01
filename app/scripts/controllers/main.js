@@ -6,15 +6,16 @@ angular.module('photoshoplrNgApp.controllers', [])
       $scope.posts = [];
       $scope.tags = [];
       $scope.orderByProp = 'timestamp';
-      $scope.defaultTitle = Settings.defaultTitle
+      $scope.defaultTitle = Settings.defaultTitle;
+      $scope.currentYear = Settings.currentYear;
 
       TumblrAPI.blogInfo({offset: 0}, function(blogInfo) {
         var pageCount = Math.ceil(blogInfo.blog.posts / Settings.postLimit);
 
         $scope.title = blogInfo.blog.title;
         $scope.description = blogInfo.blog.description;
-
-        console.log(blogInfo);
+        $scope.url = blogInfo.blog.url;
+        $scope.name = blogInfo.blog.name;
 
         populatePosts(pageCount);
       });

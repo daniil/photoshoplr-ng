@@ -1,72 +1,91 @@
-<div class="container">
-  <h1 ng-show="title">
-    {{ title }} Repository 
-    <br>
-    <small>{{ description }}</small>
-  </h1>
-  <div class="search-container">
-    <div class="input-group input-group-lg">
-      <input class="form-control input-lg search-field" type="text" placeholder="Search repository" ng-model="searchQuery">
-      <span class="input-group-addon clear-search" ng-click="searchQuery = ''">
-        <span class="glyphicon glyphicon-remove-circle"></span>
-      </span>
-      <span class="input-group-addon">
-        <small>
-          <strong>{{ filteredPosts.length }}</strong> items
-        </small>
-      </span>
-    </div>
-  </div>
-  <nav class="navbar navbar-default order-container">
-    <p class="navbar-text">
-      <strong>Order By</strong>
-    </p>
-    <ul class="nav navbar-nav navbar-right">
-      <li ng-class="{disabled: orderByProp === 'timestamp'}">
-        <a href="" ng-click="orderByProp = 'timestamp'">Date</a>
-      </li>
-      <li ng-class="{disabled: orderByProp === 'note_count'}">
-        <a href="" ng-click="orderByProp = 'note_count'">Popularity</a>
-      </li>
-    </ul>
-  </nav>
-  <div class="content">
-    <div class="col-md-6 content-list">
-      <ul class="list-group">
-        <li ng-repeat="post in filteredPosts = (posts | postsFilter : tags : searchQuery : this)" class="list-group-item content-item" ng-class="{active: selectedPost === post}">
-          <a href="" ng-click="showDetails(post)" class="post-title">
-            {{ post.title }}
-          </a>
-          <span class="badge pull-right">
-            {{ post.note_count }} 
-            <span class="glyphicon glyphicon-heart text-subtle small"></span>
-          </span>
-          <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
-          <div class="well well-sm">
-            <span class="text-muted small">Price</span>
-            <span class="pull-right text-success"><strong>{{ post.price }}</strong>
-          </div>
-          <div class="tag-container">
-            <span ng-repeat="tag in post.tags" class="tag" ng-class="{active: tagActive(tag)}">
-              <a href="" ng-click="toggleTag(tag)">{{ tag }}</a>
-              <span class="glyphicon glyphicon-remove-circle clickable" ng-show="tagActive(tag)" ng-click="toggleTag(tag)"></span>
-            </span>
-          </div> 
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-6 content-body" scroll-follower ng-show="selectedPost">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title post-title">
-            <a ng-href="{{ selectedPost.post_url }}" target="_blank">
-              {{ selectedPost.title }}
-            </a>
-          </h3>
-          <span class="glyphicon glyphicon-chevron-up pull-right text-muted clickable" ng-click="jumpToTop()"></span>
-        </div>
-        <div class="panel-body" ng-bind-html="selectedPost.body"></div>
+ <div id="wrap">
+  <div class="container">   
+    <h1 ng-show="title">
+      {{ title }} Repository 
+      <br>
+      <small>{{ description }}</small>
+    </h1>
+    <div class="search-container">
+      <div class="input-group input-group-lg">
+        <input class="form-control input-lg search-field" type="text" placeholder="Search repository" ng-model="searchQuery">
+        <span class="input-group-addon clear-search" ng-click="searchQuery = ''">
+          <span class="glyphicon glyphicon-remove-circle"></span>
+        </span>
+        <span class="input-group-addon">
+          <small>
+            <strong>{{ filteredPosts.length }}</strong> items
+          </small>
+        </span>
       </div>
     </div>
+    <nav class="navbar navbar-default order-container">
+      <p class="navbar-text">
+        <strong>Order By</strong>
+      </p>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-class="{disabled: orderByProp === 'timestamp'}">
+          <a href="" ng-click="orderByProp = 'timestamp'">Date</a>
+        </li>
+        <li ng-class="{disabled: orderByProp === 'note_count'}">
+          <a href="" ng-click="orderByProp = 'note_count'">Popularity</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      <div class="col-md-6 content-list">
+        <ul class="list-group">
+          <li ng-repeat="post in filteredPosts = (posts | postsFilter : tags : searchQuery : this)" class="list-group-item content-item" ng-class="{active: selectedPost === post}">
+            <a href="" ng-click="showDetails(post)" class="post-title">
+              {{ post.title }}
+            </a>
+            <span class="badge pull-right">
+              {{ post.note_count }} 
+              <span class="glyphicon glyphicon-heart text-subtle small"></span>
+            </span>
+            <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
+            <div class="well well-sm">
+              <span class="text-muted small">Price</span>
+              <span class="pull-right text-success"><strong>{{ post.price }}</strong></span>
+            </div>
+            <div class="tag-container">
+              <span ng-repeat="tag in post.tags" class="tag" ng-class="{active: tagActive(tag)}">
+                <a href="" ng-click="toggleTag(tag)">{{ tag }}</a>
+                <span class="glyphicon glyphicon-remove-circle clickable" ng-show="tagActive(tag)" ng-click="toggleTag(tag)"></span>
+              </span>
+            </div> 
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6 content-body" scroll-follower ng-show="selectedPost">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title post-title">
+              <a ng-href="{{ selectedPost.post_url }}" target="_blank">
+                {{ selectedPost.title }}
+              </a>
+            </h3>
+            <span class="glyphicon glyphicon-chevron-up pull-right text-muted clickable" ng-click="jumpToTop()"></span>
+          </div>
+          <div class="panel-body" ng-bind-html="selectedPost.body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="footer" ng-show="posts">
+  <div class="container">
+    <div class="footer-text small text-muted">
+      <div class="col-md-2">© {{ currentYear }}</div>
+      <div class="col-md-5">
+        Content
+        <br>
+        <a ng-href="{{ url }}" target="_blank">{{ title }} by {{ name }}</a>
+      </div>
+      <div class="col-md-5">
+        Application
+        <br>
+        <a ng-href="//www.github.com/daniil" target="_blank">daniil</a>
+      </div>
+    </p>
   </div>
 </div>
