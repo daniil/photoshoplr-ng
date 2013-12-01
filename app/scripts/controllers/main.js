@@ -14,6 +14,8 @@ angular.module('photoshoplrNgApp.controllers', [])
         $scope.title = blogInfo.blog.title;
         $scope.description = blogInfo.blog.description;
 
+        console.log(blogInfo);
+
         populatePosts(pageCount);
       });
 
