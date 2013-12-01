@@ -6,6 +6,7 @@ angular.module('photoshoplrNgApp.controllers', [])
       $scope.posts = [];
       $scope.tags = [];
       $scope.orderByProp = 'timestamp';
+      $scope.orderByReverse = true;
       $scope.defaultTitle = Settings.defaultTitle;
       $scope.currentYear = Settings.currentYear;
 

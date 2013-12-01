@@ -60,12 +60,12 @@ angular.module('photoshoplrNgApp.services', [])
             var numVal;
 
             var numMatch = val.match(/[\d\.]+/);
-            if (numMatch) numVal = numMatch[0];
+            if (numMatch) numVal = parseFloat(numMatch[0]);
 
             var freeMatch = val.match(/\bF|free\b/);
             if (freeMatch) numVal = 0;
 
-            if (!numVal && numVal !== 0) numVal = -1;
+            if (!numVal && numVal !== 0) numVal = 0.001;
 
             return numVal;
           }
