@@ -78,8 +78,8 @@ angular.module('photoshoplrNgApp.services', [])
     function(Settings) {
       return {
         parse: function(post) {
-          var cleanText = $.trim(post.body.replace(Settings.blurbRegExp, '')),
-              firstSentence = cleanText.split(".")[0];
+          var cleanText = $.trim(post.body.replace(Settings.blurbRegExp, ' ')),
+              firstSentence = cleanText.replace(/(\r\n|\n|\r)/gm, ' ').split('. ')[0];
 
           _.extend(post, { blurb: firstSentence + '.' });
         }
