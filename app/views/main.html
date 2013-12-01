@@ -46,6 +46,7 @@
               <span class="glyphicon glyphicon-heart text-subtle small"></span>
             </span>
             <p class="text-muted small">{{ post.timestamp * 1000 | date:'MMM dd, yyyy' }}</p>
+            <p class="small" ng-bind-html="post.blurb"></p>
             <div class="well well-sm">
               <span class="text-muted small">Price</span>
               <span class="pull-right text-success"><strong>{{ post.price }}</strong></span>

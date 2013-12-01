@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('photoshoplrNgApp.controllers', [])
-  .controller('MainCtrl', ['$scope', '$resource', '$window', '$timeout', 'TumblrAPI', 'Settings', 'PriceParser',
-    function ($scope, $resource, $window, $timeout, TumblrAPI, Settings, PriceParser) {
+  .controller('MainCtrl', ['$scope', '$resource', '$window', '$timeout', 'TumblrAPI', 'Settings', 'PriceParser', 'BlurbParser',
+    function ($scope, $resource, $window, $timeout, TumblrAPI, Settings, PriceParser, BlurbParser) {
       $scope.posts = [];
       $scope.tags = [];
       $scope.orderByProp = 'timestamp';
@@ -57,6 +57,7 @@ angular.module('photoshoplrNgApp.controllers', [])
             getContent = function() {
               TumblrAPI.blogPosts({ offset: currPage * Settings.postLimit }, function(blogPosts) {
                 parsePrice(blogPosts.posts);
+                parseBlurb(blogPosts.posts);
 
                 $scope.posts = $scope.posts.concat(blogPosts.posts);
                 
@@ -78,6 +79,12 @@ angular.module('photoshoplrNgApp.controllers', [])
       function parsePrice(posts) {
         angular.forEach(posts, function(value, key) {
           PriceParser.parse(value);
+        });
+      }
+
+      function parseBlurb(posts) {
+        angular.forEach(posts, function(value, key) {
+          BlurbParser.parse(value);
         });
       }
 

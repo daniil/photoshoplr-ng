@@ -7,7 +7,8 @@ angular.module('photoshoplrNgApp.services', [])
         postLimit: 20,
         defaultTitle: 'Photoshop Plugin',
         currentYear: new Date().getFullYear(),
-        priceRegExp: /[[\{|\(|\[]{1}([\$a-zA-Z\d\.\+\s\/\-]+)[\}|\)|\]]{1}$/
+        priceRegExp: /[[\{|\(|\[]{1}([\$a-zA-Z\d\.\+\s\/\-]+)[\}|\)|\]]{1}$/,
+        blurbRegExp: /<(?:.|\n)*?>/gm
       };
     }
   ])
@@ -69,6 +70,18 @@ angular.module('photoshoplrNgApp.services', [])
 
             return numVal;
           }
+        }
+      };
+    }
+  ])
+  .factory('BlurbParser', ['Settings',
+    function(Settings) {
+      return {
+        parse: function(post) {
+          var cleanText = $.trim(post.body.replace(Settings.blurbRegExp, '')),
+              firstSentence = cleanText.split(".")[0];
+
+          _.extend(post, { blurb: firstSentence + '.' });
         }
       };
     }
