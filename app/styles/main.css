@@ -127,6 +127,17 @@ a:visited {
   color: #cccccc;
 }
 
+.post-count {
+  font-weight: bold;
+}
+
+.posts-loading {
+  font-size: 80%;
+  -webkit-animation: spin 1.25s ease infinite;
+  -moz-animation: spin 1.25s ease infinite;
+  animation: spin 1.25s ease infinite;
+}
+
 .order-container {
   margin-top: 10px;
 }
@@ -192,6 +203,18 @@ a:visited {
 .tag.active > a:visited {
   color: #ECF0F1;
 }
+
+/* Animations */
+.fade-out {
+  -webkit-transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+  opacity: 0;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 /* Helpers */
 .cf:before,

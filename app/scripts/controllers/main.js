@@ -70,6 +70,13 @@ angular.module('photoshoplrNgApp.controllers', [])
 
                 if (currPage < pageCount) {
                   getContent();
+                } else {
+                  angular.element('.post-count').addClass('text-success');
+                  angular.element('.posts-loading').addClass('fade-out');
+                  var fadeTimeout = $timeout(function() {
+                    angular.element('.posts-loading').remove();
+                    $timeout.cancel(fadeTimeout);
+                  }, 500);
                 }
               });
             };
