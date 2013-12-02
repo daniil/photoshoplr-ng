@@ -5,6 +5,7 @@ angular.module('photoshoplrNgApp.services', [])
     function() {
       return {
         postLimit: 20,
+        postsPerPage: 10,
         defaultTitle: 'Photoshop Plugin',
         currentYear: new Date().getFullYear(),
         priceRegExp: /[[\{|\(|\[]{1}([\$a-zA-Z\d\.\+\s\/\-]+)[\}|\)|\]]{1}$/,

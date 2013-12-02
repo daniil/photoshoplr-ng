@@ -7,6 +7,7 @@ angular.module('photoshoplrNgApp.controllers', [])
       $scope.tags = [];
       $scope.orderByProp = 'timestamp';
       $scope.orderByReverse = true;
+      $scope.postsPerPage = Settings.postsPerPage;
       $scope.defaultTitle = Settings.defaultTitle;
       $scope.currentYear = Settings.currentYear;
 
@@ -90,8 +91,9 @@ angular.module('photoshoplrNgApp.controllers', [])
 
       function updateAfterFilters() {
         var filtersDone = $scope.$on('postsFilterDone', function(event, firstFilteredPost) { 
-          $window.scrollTo(0, 0);
-          $scope.showDetails(firstFilteredPost);
+          if ($window.scrollTop !== 0) $window.scrollTo(0, 0);
+          if ($scope.selectedPost !== $scope.firstFilteredPost) $scope.showDetails(firstFilteredPost);
+          if ($scope.postsPerPage !== Settings.postsPerPage) $scope.postsPerPage = Settings.postsPerPage;
           filtersDone();
         });
       }
