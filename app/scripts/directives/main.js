@@ -7,36 +7,42 @@ angular.module('photoshoplrNgApp.directives', [])
         restrict: 'A',
         link: function(scope, element) {
           var windowEl = angular.element($window),
+              windowScrollPos = windowEl.scrollTop(),
+              windowHeight = windowEl.height(),
               contentOffset = angular.element('.content')[0].offsetTop - 25,
               lastY;
 
           windowEl.on('scroll', function() {
-            positionContent();
-            lastY = windowEl.scrollTop();
+            windowScrollPos = windowEl.scrollTop();
+            positionContent(windowScrollPos);
+            lastY = windowScrollPos;
           });
 
           scope.$watch('selectedPost', function() {
-            positionContent();
+            positionContent(windowScrollPos);
           });
 
-          function positionContent() {
+          function positionContent(windowScrollPos) {
             var scrollPos,
                 listHeight = angular.element('.content-list').height(),
                 contentHeight = element.height();
             
-            if (windowEl.scrollTop() < contentOffset || contentHeight > listHeight) {
+            if (windowScrollPos < contentOffset 
+              || contentHeight > listHeight 
+              || windowScrollPos < (contentHeight + contentOffset) - windowHeight
+            ) {
               scrollPos = 0;
-            } else if (windowEl.scrollTop() > listHeight - contentHeight) {
+            } else if (windowScrollPos > listHeight - contentHeight) {
               scrollPos = listHeight - contentHeight;
             } else {
-              if (contentHeight > windowEl.height()) {
-                if (windowEl.scrollTop() - lastY > 0) {
-                  scrollPos = windowEl.scrollTop() - contentOffset - (contentHeight - windowEl.height()) - 25;
+              if (contentHeight > windowHeight) {
+                if (windowScrollPos - lastY > 0) {
+                  scrollPos = windowScrollPos - contentOffset - (contentHeight - windowHeight) - 25;
                 } else {
-                  scrollPos = windowEl.scrollTop() - contentOffset;
+                  scrollPos = windowScrollPos - contentOffset;
                 }
               } else {
-                scrollPos = windowEl.scrollTop() - contentOffset;
+                scrollPos = windowScrollPos - contentOffset;
               }
             }
             

@@ -28,13 +28,11 @@ angular.module('photoshoplrNgApp.controllers', [])
 
       $scope.toggleTag = function(tag) {
         _.contains($scope.tags, tag) ? $scope.tags.splice($scope.tags.indexOf(tag), 1) : $scope.tags.push(tag);
-        
         updateAfterFilters();
       };
 
       $scope.clearAllTags = function() {
         $scope.tags = [];
-
         updateAfterFilters();
       };
 
@@ -105,7 +103,7 @@ angular.module('photoshoplrNgApp.controllers', [])
       function updateAfterFilters() {
         var filtersDone = $scope.$on('postsFilterDone', function(event, firstFilteredPost) { 
           if ($window.scrollTop !== 0) $window.scrollTo(0, 0);
-          if ($scope.selectedPost !== $scope.firstFilteredPost) $scope.showDetails(firstFilteredPost);
+          if ($scope.selectedPost !== $scope.firstFilteredPost || !$scope.selectedPost) $scope.showDetails(firstFilteredPost);
           if ($scope.postsPerPage !== Settings.postsPerPage) $scope.postsPerPage = Settings.postsPerPage;
           filtersDone();
         });
