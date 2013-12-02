@@ -32,6 +32,12 @@ angular.module('photoshoplrNgApp.controllers', [])
         updateAfterFilters();
       };
 
+      $scope.clearAllTags = function() {
+        $scope.tags = [];
+
+        updateAfterFilters();
+      };
+
       $scope.tagActive = function(tag) {
         return _.contains($scope.tags, tag);
       };

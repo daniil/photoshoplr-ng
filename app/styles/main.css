@@ -138,6 +138,15 @@ a:visited {
   animation: spin 1.25s ease infinite;
 }
 
+.selected-tags {
+  margin: 0 10px;
+}
+
+.clear-tags {
+  vertical-align: middle;
+  cursor: pointer;
+}
+
 .order-container {
   margin-top: 10px;
 }
@@ -192,6 +201,21 @@ a:visited {
   margin: 0 5px 5px 0;
   border-radius: 3px;
   font-size: 11px;
+}
+
+.tag.top {
+  margin: 5px 5px 0 0;
+  cursor: pointer;
+}
+
+.tag.top:nth-child(2) {
+  margin-left: 10px;
+}
+
+.tag.top:hover {
+  color: #b94a48;
+  text-decoration: line-through;
+  background-color: #f3f7f8
 }
 
 .tag.active {

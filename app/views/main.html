@@ -14,11 +14,15 @@
         <span class="input-group-addon">
           <small>
             <span class="glyphicon glyphicon-refresh posts-loading text-muted"></span>
-            <span class="post-count">{{ filteredPosts.length }}</span>
-            items
+            <span class="post-count">{{ filteredPosts.length }}</span> items
           </small>
         </span>
       </div>
+    </div>
+    <div class="selected-tags" ng-show="tags.length">
+      <span class="text-muted small"><strong>Tags</strong></span>
+      <span ng-repeat="tag in tags" class="tag top" ng-click="toggleTag(tag)">{{ tag }}</span>
+      <span class="glyphicon glyphicon-remove-circle text-danger clear-tags" ng-click="clearAllTags()"></span>
     </div>
     <nav class="navbar navbar-default order-container">
       <p class="navbar-text">
