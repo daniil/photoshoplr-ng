@@ -8,3 +8,5 @@ The point of the exercise is to utilize AngularJS as well as leverage additional
 The layout is using Bootstrap.
 
 Yo + Bower + Grunt are used to set up project dependencies and run it.
+
+Online: [ps.daniil.ca](http://ps.daniil.ca/)
