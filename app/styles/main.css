@@ -228,6 +228,10 @@ a:visited {
   color: #ECF0F1;
 }
 
+.footer-text {
+  margin-top: 5px;
+}
+
 /* Animations */
 .fade-out {
   -webkit-transition: opacity 0.5s ease-out;
