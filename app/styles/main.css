@@ -155,6 +155,15 @@ a:visited {
   margin-top: 15px;
 }
 
+.post-img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.post-img:hover {
+  opacity: 0.85;
+}
+
 .content-body {
   -webkit-transition: margin-top 0.5s ease-out;
   -moz-transition: margin-top 0.5s ease-out;

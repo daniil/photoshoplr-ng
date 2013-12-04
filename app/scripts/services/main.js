@@ -75,6 +75,18 @@ angular.module('photoshoplrNgApp.services', [])
       };
     }
   ])
+  .factory('ImageParser', [
+    function() {
+      return {
+        parse: function(post) {
+          var bodyHTML = $.parseHTML(post.body),
+              imgSrc = $(bodyHTML).find('img').attr('src');
+          
+          _.extend(post, { img: imgSrc });
+        }
+      };
+    }
+  ])
   .factory('BlurbParser', ['Settings',
     function(Settings) {
       return {

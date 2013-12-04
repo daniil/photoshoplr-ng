@@ -9,5 +9,5 @@ window.addEventListener('scroll', function() {
   
   timer = setTimeout(function(){
     body.classList.remove('disable-hover')
-  },500);
+  },250);
 }, false);
